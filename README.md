@@ -2,7 +2,7 @@
 
 <h1>Hello World 👋🏻 </h1>
 
-A new Flutter App project: <h2> Doctors App 👨🏻‍⚕️ </h2>
+ <h2> Doctors App 👨🏻‍⚕️ </h2> A new Flutter App project.
 
 
 ## Getting Started
