@@ -1,5 +1,3 @@
-import 'package:doctors_app/core/helpers/extentions.dart';
-import 'package:doctors_app/core/routing/routes.dart';
 import 'package:doctors_app/core/theming/styles.dart';
 import 'package:doctors_app/features/onboarding/widgets/get_started_button.dart';
 import 'package:doctors_app/features/onboarding/widgets/doc_logo.dart';
