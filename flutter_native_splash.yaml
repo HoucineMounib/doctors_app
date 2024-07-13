@@ -1,9 +1,11 @@
 flutter_native_splash:
 # Solash Screen for IOS & Android below 12 - Api 31
   color: "#ffffff"
-
   image: assets/images/Splash Screen.png
 
   android_12:
     image: assets/images/Android12.png    
     color: "#ffffff"    
+
+
+# plugin splash screen command to activate: =>  dart run flutter_native_splash:create --path=flutter_native_splash.yaml 
