@@ -1,6 +1,6 @@
 import 'package:doctors_app/core/helpers/spacing.dart';
 import 'package:doctors_app/core/theming/styles.dart';
-import 'package:doctors_app/core/widgets/app_cta_button.dart';
+import 'package:doctors_app/core/widgets/app_text_button.dart';
 import 'package:doctors_app/core/widgets/app_text_form_field.dart';
 import 'package:doctors_app/features/login/ui/widgets/go_to_sign_up_text.dart';
 import 'package:doctors_app/features/login/ui/widgets/terms_and_conditions_text.dart';
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       verticalSpace(40),
                       const TermsAndConfiotionsText(),
-                      verticalSpace(48),
+                      verticalSpace(56),
                       const GoToSignUpText(),
                     ],
                   )),
