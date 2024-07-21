@@ -48,6 +48,7 @@ dependencies:
   retrofit:
   retrofit_generator:
   pretty_dio_logger:
+  build_runner:
   #localization
   intl:
   easy_localization:
@@ -57,6 +58,8 @@ dependencies:
   flutter_svg:
   #for Adaptive and Responsive UI and font
   flutter_screenutil:
+  # dependency Injection
+  get_it: 
 
 
 

@@ -1,22 +1,19 @@
 import 'package:doctors_app/core/helpers/spacing.dart';
 import 'package:doctors_app/core/theming/styles.dart';
 import 'package:doctors_app/core/widgets/app_text_button.dart';
-import 'package:doctors_app/core/widgets/app_text_form_field.dart';
+import 'package:doctors_app/features/login/data/models/login_request_body.dart';
+import 'package:doctors_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:doctors_app/features/login/ui/widgets/email_and_password.dart';
 import 'package:doctors_app/features/login/ui/widgets/go_to_sign_up_text.dart';
+import 'package:doctors_app/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:doctors_app/features/login/ui/widgets/terms_and_conditions_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey? formKey = GlobalKey<FormState>();
-  bool isObscureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,55 +34,44 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyles.font14GrayRegular.copyWith(height: 1.5),
               ),
               verticalSpace(40),
-              Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      const AppTextFormField(
-                        hintText: 'Email',
-                      ),
-                      verticalSpace(16),
-                      AppTextFormField(
-                        hintText: 'Password',
-                        isObscureText: isObscureText,
-                        suffixIcon: IconButton(
-                          icon: Icon(isObscureText
-                              ? Icons.visibility_off
-                              : Icons.visibility),
-                          onPressed: () {
-                            setState(() {
-                              isObscureText = !isObscureText;
-                            });
-                          },
-                        ),
-                      ),
-                      verticalSpace(24),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            child: Text(
-                              'Forgot Password?',
-                              style: TextStyles.font14BlueRegular,
-                            ),
-                          ),
-                        ],
-                      ),
-                      verticalSpace(40),
-                      AppTextButton(
-                        buttonText: 'Login',
-                        onPressed: () {},
-                      ),
-                      verticalSpace(40),
-                      const TermsAndConfiotionsText(),
-                      verticalSpace(56),
-                      const GoToSignUpText(),
-                    ],
-                  )),
+              EmailAndPassword(),
+              verticalSpace(32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyles.font14BlueRegular,
+                    ),
+                  ),
+                ],
+              ),
+              verticalSpace(40),
+              AppTextButton(
+                buttonText: 'Login',
+                onPressed: () {
+                  validateAndDoLogin(context);
+                },
+              ),
+              verticalSpace(24),
+              const TermsAndConfiotionsText(),
+              verticalSpace(32),
+              const Center(child: GoToSignUpText()),
+              const LoginBlocListener()
             ],
           )),
         ),
       ),
     );
+  }
+
+  ///Send the Requaste after be sure I'm validated
+  void validateAndDoLogin(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLoginStates(LoginRequestBody(
+          email: context.read<LoginCubit>().emailController.text,
+          password: context.read<LoginCubit>().passwordController.text));
+    }
   }
 }
