@@ -4,14 +4,14 @@ import 'package:doctors_app/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GoToSignUpText extends StatelessWidget {
-  const GoToSignUpText({super.key});
+class GoToLoginText extends StatelessWidget {
+  const GoToLoginText({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Routes.signUp);
+        context.pushNamed(Routes.login);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
@@ -19,10 +19,9 @@ class GoToSignUpText extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             TextSpan(
-                text: "Don't have an Account ? ",
+                text: "Already have an account yet? ",
                 style: TextStyles.font14BlackRegular),
-            TextSpan(
-                text: ' Create Account ', style: TextStyles.font14BlueSemiBold),
+            TextSpan(text: ' Sign In ', style: TextStyles.font14BlueSemiBold),
           ]),
         ),
       ),
