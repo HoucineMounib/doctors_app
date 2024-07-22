@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:doctors_app/features/login/data/models/login_request_body.dart';
 import 'package:doctors_app/features/login/data/models/login_response.dart';
 import 'package:doctors_app/features/login/data/repos/login_repo.dart';
 import 'package:doctors_app/features/login/logic/cubit/login_state.dart';
@@ -13,9 +14,10 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void emitLoginStates(loginRequestBody) async {
+  void emitLoginStates() async {
     emit(const LoginState.loading());
-    final response = await _loginRepo.login(loginRequestBody);
+    final response = await _loginRepo.login(LoginRequestBody(
+        email: emailController.text, password: passwordController.text));
 
     response.when(seccess: (LoginResponse loginResponse) {
       emit(LoginState.success(loginResponse));
