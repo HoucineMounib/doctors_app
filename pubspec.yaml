@@ -60,6 +60,7 @@ dependencies:
   flutter_screenutil:
   # dependency Injection
   get_it: 
+  firebase_core: ^2.24.2
 
 
 
