@@ -1,0 +1,19 @@
+
+default_platform(:android)
+
+platform :android do
+  desc "My Doc Doc application : Lane for Android Firebase App Aistribution "
+  lane :firebase_distribution do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production -t lib/main.production.dart --no-tree-shake-icons"
+    firebase_app_distribution(
+    app: "1:726414521832:android:f8a7c497379cd83f46a05d",
+    firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+    android_artifact_type:"APK",
+    android_artifact_path:"../build/app/outputs/flutter-apk/app-production-release.apk",
+    testers: "houcine.mounib0@gmail.com",
+    upload_timeout: 600,
+    release_notes: "First Fastlane Firerbase app Distrubution!"
+      )
+  end
+end
